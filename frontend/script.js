@@ -1,19 +1,23 @@
 const form = document.getElementById("waitlist-form");
 
-const emailInput = document.getElementById("email");
-
-const messageDiv = document.getElementById("message");
-
 const nameInput = document.getElementById("name");
 
+const emailInput = document.getElementById("email");
+
 const phoneInput = document.getElementById("phone");
+
+const messageDiv = document.getElementById("message");
 
 
 form.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
+    const name = nameInput.value;
+
     const email = emailInput.value;
+
+    const phone = phoneInput.value;
 
     try {
 
@@ -36,6 +40,8 @@ form.addEventListener("submit", async (event) => {
 
         const data = await response.json();
 
+        console.log(data);
+
         messageDiv.innerText = data.message;
 
         nameInput.value = "";
@@ -44,14 +50,13 @@ form.addEventListener("submit", async (event) => {
 
         phoneInput.value = "";
 
-
     }
 
     catch (error) {
 
-        messageDiv.innerText = "Something went wrong";
-
         console.log(error);
+
+        messageDiv.innerText = "Something went wrong";
 
     }
 
