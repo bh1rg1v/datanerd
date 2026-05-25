@@ -1,1 +1,1 @@
-A fullstack app which displays information a dataset along with sampledata. Integreated with a payment system. If an user buys the dataset, his gmail will be given access to the google drive file automatically. So that, the user can access, view and download the dataset.
+A fullstack app which displays information of a dataset along with sampledata. Integreated with a payment system. If an user buys the dataset, his gmail will be given access to the google drive file automatically. So that, the user can access, view and download the dataset.
