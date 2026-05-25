@@ -18,7 +18,7 @@ form.addEventListener("submit", async (event) => {
     try {
 
         const response = await fetch(
-            "https://datanerd-czhg.onrender.com/",
+            "https://datanerd-czhg.onrender.com/waitlist",
             {
                 method: "POST",
 
