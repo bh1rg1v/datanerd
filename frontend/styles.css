@@ -12,6 +12,16 @@ body {
     font-family: Magnetik;
 }
 
+.headermenu {
+
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+
+    font-size: 35px;
+
+}
+
 .datasetinfo {
 
     display: flex;
@@ -50,15 +60,19 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 20px;
+
+    border: solid 2px white;
+    border-radius: 20px;
 
     color: white;
     background-color: black;
-    
-    margin-top: 20px;
+
+    width: fit-content;
+    margin: 20px auto;
 
 }
 
@@ -70,19 +84,23 @@ body {
 .emailbox form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     /* justify-content: center; */
     align-items: center;
 }
 
 .emailbox form input {
-    border-radius: 5px;
+    border-radius: 20px;
     width: 250px;
+    padding: 20px;
 }
 
 .emailbox form button {
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    /* padding-top: 500px; */
     width: 150px;
+    padding: 10px;
+    margin: 25px;
 }
 
 .emailbox form button:hover{

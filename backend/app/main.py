@@ -46,7 +46,9 @@ def join_waitlist(data: WaitlistRequest, db: Session = Depends(get_db)):
         }
 
     new_user = Waitlist(
-        email=data.email
+        name=data.name,
+        email=data.email,
+        phone=data.phone
     )
 
     db.add(new_user)
@@ -57,5 +59,7 @@ def join_waitlist(data: WaitlistRequest, db: Session = Depends(get_db)):
 
     return {
         "message" : "successfully joined waitlist",
-        "email" : data.email
+        "name" : data.name,
+        "email" : data.email,
+        "phone" : data.phone
     }

@@ -4,6 +4,10 @@ const emailInput = document.getElementById("email");
 
 const messageDiv = document.getElementById("message");
 
+const nameInput = document.getElementById("name");
+
+const phoneInput = document.getElementById("phone");
+
 
 form.addEventListener("submit", async (event) => {
 
@@ -23,7 +27,9 @@ form.addEventListener("submit", async (event) => {
                 },
 
                 body: JSON.stringify({
-                    email: email
+                    name: name,
+                    email: email,
+                    phone: phone
                 })
             }
         );
@@ -32,7 +38,12 @@ form.addEventListener("submit", async (event) => {
 
         messageDiv.innerText = data.message;
 
+        nameInput.value = "";
+
         emailInput.value = "";
+
+        phoneInput.value = "";
+
 
     }
 

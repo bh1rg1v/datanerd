@@ -14,6 +14,12 @@
 
 <body>
 
+    <div class="headermenu">
+
+        <p>Historical Data of Stocks in Indian Equity Markets</p>
+
+    </div>
+
     <div class="datasetinfo">
 
         <div class="datacard">
@@ -28,7 +34,8 @@
                     <li>Universe: 1900+ Stocks</li>
                     <li>Data Type: OHLCV Data</li>
                     <li>Time Frame: 1 Minute</li>
-                    <li>Coverage Period: April 2015 - May 2026 (11 Years)</li>
+                    <li>Coverage Period: April 2015 - May 2026</li>
+                    <li>Duration: 11 Years</li>
                     <li>Data Size: 61.3 GB</li>
                     <li>Update Frequency: Monthly</li>
                     <li>Includes (OHLCV):
@@ -162,13 +169,16 @@
 
     <div class="emailbox">
 
-        <p>Interested in our data?</p>
-        <p>Signup for a waitlist</p>
+        <p>Interested in our data ?</p>
+        <p>Send us your details, we will contact you.</p>
 
         <form id="waitlist-form">
 
+            <input type="name" id="name" placeholder="Enter your name" required>
             <input type="email" id="email" placeholder="Enter your email" required>
-            <button type="submit">Join Waitlist</button>
+            <input type="phone" id="phone" placeholder="Enter your phone" required>
+
+            <button type="submit">Submit Details</button>
 
             <div id="message"></div>
 
