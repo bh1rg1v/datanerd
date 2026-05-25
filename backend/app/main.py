@@ -42,7 +42,7 @@ def join_waitlist(data: WaitlistRequest, db: Session = Depends(get_db)):
     if existing_user:
 
         return {
-            "message": "You are already on waitlist"
+            "message": "You have already sent your details"
         }
 
     new_user = Waitlist(
@@ -58,7 +58,7 @@ def join_waitlist(data: WaitlistRequest, db: Session = Depends(get_db)):
     db.refresh(new_user)
 
     return {
-        "message" : "successfully joined waitlist",
+        "message" : "we have recieved your details, we'll get back to you",
         "name" : data.name,
         "email" : data.email,
         "phone" : data.phone
