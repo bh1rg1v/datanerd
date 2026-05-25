@@ -1,0 +1,91 @@
+@font-face {
+    font-family: "YUCCA";
+    src: url("magentik-light.otf") format("opentype");
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+* {
+    font-family: Magnetik;
+}
+
+.datasetinfo {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    
+    row-gap: 20px;
+    column-gap: 100px;
+
+}
+
+.datacard {
+    border: solid 2px black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titlebox {
+    background-color: black;
+    color: white;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.description {    
+    padding: 10px;
+}
+
+.emailbox {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+    color: white;
+    background-color: black;
+    
+    margin-top: 20px;
+
+}
+
+.emailbox p{
+    padding: 1px;
+    margin: 1px;
+}
+
+.emailbox form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.emailbox form input {
+    border-radius: 5px;
+    width: 250px;
+}
+
+.emailbox form button {
+    border-radius: 5px;
+    width: 150px;
+}
+
+.emailbox form button:hover{
+    background-color: black;
+    color: white;
+}
