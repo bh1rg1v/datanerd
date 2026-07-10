@@ -12,8 +12,8 @@
     --accent-red: #ef4444;
     --accent-green: #10b981;
     --border-width: 2px;
-    --font-heading: 'Oswald', sans-serif;
-    --font-body: 'Barlow', sans-serif;
+    --font-heading: GellixSemiBold, Arial, sans-serif;
+    --font-body: GellixSemiBold, Arial, sans-serif;
 }
 
 [data-theme="dark"] {
