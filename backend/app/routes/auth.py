@@ -86,14 +86,15 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
 @router.post("/admin/setup", status_code=status.HTTP_201_CREATED)
 def setup_admin(db: Session = Depends(get_db)):
-    admin_email = "bh1rg1v"
-    existing_admin = db.query(User).filter(User.email == admin_email).first()
+    from app.config import ADMIN_EMAIL, ADMIN_PASSWORD
+    
+    existing_admin = db.query(User).filter(User.email == ADMIN_EMAIL).first()
     if existing_admin:
         return {"message": "Admin already exists"}
     
-    hashed_pwd = hash_password("BhargavRam@10")
-    admin_user = User(name="Admin", email=admin_email, hashed_password=hashed_pwd, is_admin=True)
+    hashed_pwd = hash_password(ADMIN_PASSWORD)
+    admin_user = User(name="Admin", email=ADMIN_EMAIL, hashed_password=hashed_pwd, is_admin=True)
     db.add(admin_user)
     db.commit()
-    return {"message": "Admin account created. Userid: bh1rg1v, Password: BhargavRam@10"}
+    return {"message": f"Admin account created. Userid: {ADMIN_EMAIL}"}
 

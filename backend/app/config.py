@@ -15,3 +15,7 @@ RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "test_secret")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "7d5bc289ff70e30b14c330df30b42d76587c4f4b23d9241517454f0c609df073")
 JWT_ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1440  # 24 hours
+
+# Admin settings
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@example.com")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "changeme")
