@@ -144,23 +144,23 @@ function handleCheckout() {
 
     if (statusMsg) {
         statusMsg.innerHTML = `
-            <div style="margin-top: 1.5rem; padding: 1.2rem; border: var(--border-width) solid var(--border-color); background: var(--bg-focus); text-align: left; box-shadow: 4px 4px 0px var(--border-color);">
-                <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--accent-green); font-family: var(--font-heading); text-transform: uppercase;">
+            <div style="margin-top: 1.5rem; padding: 1.5rem; border: var(--border-width) solid var(--border-color); background: var(--bg-focus); border-radius: var(--border-radius-md); text-align: left; box-shadow: var(--shadow-soft);">
+                <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-green); font-family: var(--font-heading);">
                     ✓ Message Copied
                 </p>
-                <div id="countdown-container" style="font-size: 0.95rem; margin-bottom: 0.75rem; text-transform: none; color: var(--text-primary); line-height: 1.4;">
-                    We've copied the message. **Opening Reddit chat in <span id="reddit-countdown" style="font-weight: bold;">10</span> seconds...**
+                <div id="countdown-container" style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text-primary); line-height: 1.5;">
+                    We've copied the message. <strong>Opening Reddit chat in <span id="reddit-countdown">10</span> seconds...</strong>
                 </div>
-                <p style="font-size: 0.9rem; margin-bottom: 0.75rem; text-transform: none; color: var(--text-muted); line-height: 1.4; font-style: italic;">
-                    Once the Reddit tab loads, simply **paste the message (Ctrl+V)** into the chat box to purchase.
+                <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-muted); line-height: 1.5;">
+                    Once the Reddit tab loads, simply <strong>paste the message (Ctrl+V)</strong> into the chat box to purchase.
                 </p>
-                <textarea id="reddit-message-text" readonly style="width: 100%; height: 160px; border: var(--border-width) solid var(--border-color); padding: 0.8rem; font-family: var(--font-body); font-size: 0.95rem; resize: none; background: var(--bg-primary); margin-bottom: 1rem; color: var(--text-primary); box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);">${escapeHtml(messageContent)}</textarea>
+                <textarea id="reddit-message-text" readonly style="width: 100%; height: 160px; border: var(--border-width) solid var(--border-color); border-radius: var(--border-radius-sm); padding: 1rem; font-family: var(--font-body); font-size: 0.95rem; resize: none; background: var(--bg-primary); margin-bottom: 1.5rem; color: var(--text-primary); outline: none;">${escapeHtml(messageContent)}</textarea>
                 
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <button id="copy-msg-btn" class="auth-btn" style="width: 100%; padding: 0.8rem; font-size: 0.95rem; background: #166534; color: #fff; font-weight: 700; cursor: pointer; text-transform: uppercase; border: var(--border-width) solid var(--border-color);">
+                    <button id="copy-msg-btn" style="width: 100%; padding: 0.8rem; font-size: 0.95rem; background: var(--accent-green); color: #fff; font-weight: 600; cursor: pointer; border-radius: var(--border-radius-sm); border: none;">
                         ✓ Auto-copied!
                     </button>
-                    <a href="https://chat.reddit.com/user/t2_28jblv2vin" target="_blank" class="auth-btn signup-btn" style="display: block; text-decoration: none; text-align: center; padding: 0.8rem; font-size: 0.95rem; font-weight: 700; border: var(--border-width) solid var(--border-color); text-transform: uppercase;">
+                    <a href="https://chat.reddit.com/user/t2_28jblv2vin" target="_blank" style="display: block; text-decoration: none; text-align: center; padding: 0.8rem; font-size: 0.95rem; font-weight: 600; background: var(--text-primary); color: var(--bg-primary); border-radius: var(--border-radius-sm);">
                         Open Reddit Chat Link
                     </a>
                 </div>

@@ -23,25 +23,16 @@
         
         <!-- 1. Setup Admin Account -->
         <div class="authbox">
-            <p>1. Initialize Database Admin</p>
+            <p>Initialize Database</p>
             <button id="setup-admin-btn">Setup Default Admin</button>
             <div id="setup-message"></div>
         </div>
 
-        <!-- 2. Admin Login -->
-        <div class="authbox" id="admin-login-box">
-            <p>2. Authenticate Session</p>
-            <form id="admin-login-form">
-                <input type="text" id="admin-email" placeholder="Admin Email / User ID" required value="bh1rg1v">
-                <input type="password" id="admin-password" placeholder="Admin Security Code" required value="BhargavRam@10">
-                <button type="submit">Authenticate</button>
-                <div id="admin-login-message"></div>
-            </form>
-        </div>
 
-        <!-- 3. Add Dataset -->
+
+        <!-- Add Dataset -->
         <div class="authbox" id="admin-dataset-box" style="opacity: 0.5; pointer-events: none;">
-            <p>3. Register New Dataset</p>
+            <p>Register New Dataset</p>
             <form id="add-dataset-form">
                 <input type="text" id="dataset-name" placeholder="Dataset Catalog Name" required>
                 <input type="text" id="dataset-description" placeholder="Description (Comma-separated features)" required>
@@ -51,9 +42,9 @@
             </form>
         </div>
 
-        <!-- 4. Add Article -->
+        <!-- Add Article -->
         <div class="authbox" id="admin-article-box" style="opacity: 0.5; pointer-events: none; margin-bottom: 5rem;">
-            <p>4. Publish New Article</p>
+            <p>Publish New Article</p>
             <form id="add-article-form">
                 <input type="text" id="article-title" placeholder="Article Title" required>
                 <input type="text" id="article-slug" placeholder="Unique Slug/ID (e.g. options-strategies)" required>
