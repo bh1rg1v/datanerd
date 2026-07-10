@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocal ? "http://127.0.0.1:8000/api" : "https://datanerd-czhg.onrender.com/api";
 
 /**
  * Enhanced fetch wrapper that automatically manages auth headers and JSON content-types.
