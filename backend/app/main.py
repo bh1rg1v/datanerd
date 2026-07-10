@@ -1,65 +1,49 @@
-from fastapi import FastAPI, Depends
-from app.schemas import WaitlistRequest
-
-from sqlalchemy.orm import Session
-
-from app.database import engine, Base, get_db
-from app.models import Waitlist
-
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 
-app = FastAPI()
+from app.database import engine, Base, SessionLocal
+from app.routes import auth, datasets, articles
+from app.routes.datasets import seed_default_datasets
 
-app.add_middleware(
-
-    CORSMiddleware,
-
-    allow_origins=["*"],
-
-    allow_credentials=True,
-
-    allow_methods=["*"],
-
-    allow_headers=["*"]
-
+app = FastAPI(
+    title="Data Nerd API",
+    description="Backend API for Data Nerd dataset platform, featuring JWT auth",
+    version="1.0.0"
 )
 
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+# Initialize database schemas
 Base.metadata.create_all(bind=engine)
+
+# Safely migrate existing database users table to include is_admin column if it doesn't exist
+try:
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE"))
+except Exception:
+    pass
+
+# Seed default datasets if they do not exist
+db = SessionLocal()
+try:
+    seed_default_datasets(db)
+finally:
+    db.close()
+
+# Register modular routers
+app.include_router(auth.router, prefix="/api")
+app.include_router(datasets.router, prefix="/api")
+app.include_router(articles.router, prefix="/api")
 
 @app.get("/")
 def home():
-    return {"message" : "backend running successfully"}
-
-@app.post("/waitlist")
-def join_waitlist(data: WaitlistRequest, db: Session = Depends(get_db)):
-
-    print(data.email)
-
-    existing_user = db.query(Waitlist).filter(
-        Waitlist.email == data.email
-    ).first()
-
-    if existing_user:
-
-        return {
-            "message": "You have already sent your details, we'll get back to you"
-        }
-
-    new_user = Waitlist(
-        name=data.name,
-        email=data.email,
-        phone=data.phone
-    )
-
-    db.add(new_user)
-
-    db.commit()
-    
-    db.refresh(new_user)
-
-    return {
-        "message" : "we have recieved your details, we'll get back to you",
-        "name" : data.name,
-        "email" : data.email,
-        "phone" : data.phone
-    }
+    """Base API check."""
+    return {"message": "backend running successfully"}

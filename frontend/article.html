@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Data Nerd</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="headermenu">
+        <div class="top-auth" id="top-auth">
+            <!-- Dynamically populated by auth_helper.js -->
+        </div>
+        <h1>Data Nerd</h1>
+        <p>Insights, Guides, and Market Research</p>
+    </header>
+
+    <!-- Main Article Reading layout -->
+    <main class="article-reader-container">
+        <div id="article-reader-content">
+            <div style="text-align: center; padding: 3rem;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">Fetching article content...</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; text-align: center;">
+            <a href="index.html" class="auth-btn" style="text-decoration: none; display: inline-block;">← Back to Catalog</a>
+        </div>
+    </main>
+
+    <!-- Core Modular Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth_helper.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const contentContainer = document.getElementById('article-reader-content');
+            if (!contentContainer) return;
+
+            // Parse article ID from query params or pathname
+            let articleId = null;
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('id')) {
+                articleId = urlParams.get('id');
+            } else {
+                // Parse from path, e.g. /articles/some-slug
+                const pathParts = window.location.pathname.split('/');
+                if (pathParts.length >= 3 && pathParts[1] === 'articles') {
+                    articleId = pathParts[2];
+                }
+            }
+
+            if (!articleId) {
+                contentContainer.innerHTML = `
+                    <div class="authbox" style="border-color: var(--accent-red); box-shadow: 8px 8px 0px var(--accent-red);">
+                        <p style="color: var(--accent-red); font-size: 1.3rem; font-weight: bold;">Article ID Missing</p>
+                        <p>No valid article identifier was specified in the URL.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const response = await apiFetch(`/articles/${articleId}`);
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        contentContainer.innerHTML = `
+                            <div class="authbox" style="border-color: var(--accent-red); box-shadow: 8px 8px 0px var(--accent-red);">
+                                <p style="color: var(--accent-red); font-size: 1.3rem; font-weight: bold;">Article Not Found</p>
+                                <p>The article you are trying to view does not exist or has been removed.</p>
+                            </div>
+                        `;
+                    } else {
+                        throw new Error(`Server returned status: ${response.status}`);
+                    }
+                    return;
+                }
+
+                const article = await response.json();
+                
+                // Set page title
+                document.title = `${article.title} - Data Nerd`;
+
+                // Set dynamic meta description for SEO
+                const textContent = article.content.replace(/<[^>]*>/g, '');
+                const preview = textContent.length > 155 ? textContent.substring(0, 152) + '...' : textContent;
+                let metaDesc = document.querySelector('meta[name="description"]');
+                if (!metaDesc) {
+                    metaDesc = document.createElement('meta');
+                    metaDesc.setAttribute('name', 'description');
+                    document.head.appendChild(metaDesc);
+                }
+                metaDesc.setAttribute('content', preview);
+
+                // Set dynamic meta keywords for SEO
+                let metaKeywords = document.querySelector('meta[name="keywords"]');
+                if (!metaKeywords) {
+                    metaKeywords = document.createElement('meta');
+                    metaKeywords.setAttribute('name', 'keywords');
+                    document.head.appendChild(metaKeywords);
+                }
+                const keywords = `stock market data, ${article.title.toLowerCase().split(' ').join(', ')}`;
+                metaKeywords.setAttribute('content', keywords);
+
+                const dateObj = new Date(article.created_at);
+                const formattedDate = dateObj.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                // Format content: convert newlines to paragraph tags if not structured with HTML
+                let formattedContent = article.content;
+                if (!article.content.trim().startsWith('<')) {
+                    formattedContent = article.content
+                        .split(/\n\s*\n/)
+                        .map(para => `<p style="margin-bottom: 1.5rem; line-height: 1.7; font-size: 1.1rem; color: var(--text-primary); text-align: justify;">${para.replace(/\n/g, '<br>')}</p>`)
+                        .join('');
+                }
+
+                contentContainer.innerHTML = `
+                    <article class="article-details">
+                        <div class="article-header" style="margin-bottom: 2.5rem; border-bottom: var(--border-width) solid var(--border-color); padding-bottom: 1.5rem;">
+                            <span class="article-date" style="font-size: 0.95rem; font-weight: bold; text-transform: uppercase; color: var(--text-muted);">${formattedDate}</span>
+                            <h1 class="article-detail-title" style="font-family: var(--font-heading); font-size: 3rem; font-weight: 800; text-transform: uppercase; line-height: 1.1; margin-top: 0.5rem; color: var(--text-primary);">${escapeHtml(article.title)}</h1>
+                        </div>
+                        <div class="article-body" style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-primary);">
+                            ${formattedContent}
+                        </div>
+                    </article>
+                `;
+
+            } catch (error) {
+                console.error("Error loading article:", error);
+                contentContainer.innerHTML = `
+                    <div class="authbox" style="border-color: var(--accent-red); box-shadow: 8px 8px 0px var(--accent-red);">
+                        <p style="color: var(--accent-red); font-size: 1.3rem; font-weight: bold;">Loading Failed</p>
+                        <p>There was an error connecting to the backend server. Please verify the server is running.</p>
+                    </div>
+                `;
+            }
+        });
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>

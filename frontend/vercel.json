@@ -1,3 +1,6 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/articles/:id", "destination": "/article.html?id=:id" }
+  ]
 }

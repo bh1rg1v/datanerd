@@ -2,190 +2,56 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Data Nerd</title>
-
+    <title>Data Nerd - Stock & Options Datasets</title>
+    <meta name="description" content="Explore and purchase premium historical datasets for stock fundamentals, options, and market ticks in the Indian equity markets on Data Nerd.">
+    <meta name="keywords" content="indian stock market, stock datasets, option pricing, options historical data, equity fundamentals, algo trading datasets">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
 
-    <div class="headermenu">
-
-        <p>Historical Data of Stocks in Indian Equity Markets</p>
-
-    </div>
-
-    <div class="datasetinfo">
-
-        <div class="datacard">
-
-            <div class="titlebox">
-                <p>Equity Data</p>
-            </div>
-
-            <div class="description">
-
-                <ul>
-                    <li>Universe: 1900+ Stocks</li>
-                    <li>Data Type: OHLCV Data</li>
-                    <li>Time Frame: 1 Minute</li>
-                    <li>Coverage Period: April 2015 - May 2026</li>
-                    <li>Duration: 11 Years</li>
-                    <li>Data Size: 61.3 GB</li>
-                    <li>Update Frequency: Monthly</li>
-                    <li>Includes (OHLCV):
-                        <ul>
-                            <li>Open</li>
-                            <li>High</li>
-                            <li>Low</li>
-                            <li>Close</li>
-                            <li>Volume</li>
-                        </ul>
-                    </li>
-
-                    <li>Price: ₹1,000</li>
-
-                </ul>
-
-            </div>
-
-
-
+    <header class="headermenu">
+        <div class="top-auth" id="top-auth">
+            <!-- Dynamically populated by auth_helper.js -->
+            <a href="login.html" class="auth-btn">Login</a>
+            <a href="signup.html" class="auth-btn signup-btn">Sign Up</a>
         </div>
+        <h1>Data Nerd</h1>
+        <p>Historical Data of Stocks, Fundamentals, and Options in Indian Equity Markets</p>
+    </header>
 
-        <div class="datacard">
-
-            <div class="titlebox">
-                <p>Stock Fundamentals Data</p>
-            </div>
-
-            <div class="description">
-
-                <ul>
-                    <li>Universe: 1750+ Stocks</li>
-                    <li>Coverage Period: 2017 - 2026 (10 Years)</li>
-                    <li>Time Frames: Quarterly & Yearly</li>
-                    <li>Update Frequency: Quarterly</li>
-                    <li>Includes:</li>
-                    <li>Balance Sheet Data</li>
-                    <li>Cash Flow Statements</li>
-                    <li>Profit & Loss Statements</li>
-                    <li>Quarterly Results</li>
-                    <li>Historical Financial Ratios</li>
-                    <li>Share Holding Pattern</li>
-                    <li>Price: ₹2,500</li>
-                </ul>
-
-            </div>
-
+    <!-- Dynamic Datasets Catalog -->
+    <main class="datasetinfo" id="datasets-container">
+        <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+            <div class="loading-spinner"></div>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">Loading marketplace catalog...</p>
         </div>
+    </main>
 
-        <div class="datacard">
+    <!-- Purchase Action Card -->
+    <section class="checkoutbox">
+        <p>Selected Data Total: <span>₹<span id="total-amount">0</span></span></p>
+        <button id="checkout-btn" disabled>Message on Reddit to Buy</button>
+        <div id="message"></div>
+    </section>
 
-            <div class="titlebox">
-                <p>Implied Volatility (IV) Data</p>
+    <!-- Articles Section -->
+    <section class="articles-section">
+        <h2>Articles & Guides</h2>
+        <div id="articles-container">
+            <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-secondary);">Loading articles...</p>
             </div>
-
-            <div class="description">
-
-                <ul>
-                    <li>Universe: 200+ Stocks</li>
-                    <li>Coverage Period: July 2017 - May 2026</li>
-                    <li>Duration: 8 Years & 11 Months</li>
-                    <li>Time Frame: Daily</li>
-                    <li>Update Frequency: Monthly</li>
-                    <li>Price: ₹1000</li>
-                </ul>
-
-            </div>
-
         </div>
+    </section>
 
-        <div class="datacard">
-
-            <div class="titlebox">
-                <p>Stock Options Data</p>
-            </div>
-
-            <div class="description">
-
-                <ul>
-                    <li>Universe: 2000+ Stocks</li>
-                    <li>Data Type: OHLCV + OI Data</li>
-                    <li>Time Frame: 1 Minute</li>
-                    <li>Coverage Period: Oct 2024 - May 2026</li>
-                    <li> Duration: 20 Months</li>
-                    <li>Expired Contracts: 254,527</li>
-                    <li>Data Size: 73.3 GB</li>
-                    <li>Update Frequency: Monthly</li>
-                    <li>
-                        Includes:
-                        <ul>
-                            <li>OHLCV Data</li>
-                            <li>Open Interest (OI) Data</li>
-                        </ul>
-                    </li>
-                    <li>Price: ₹2,500</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="datacard">
-
-            <div class="titlebox">
-                <p>Index Options Data</p>
-            </div>
-
-            <div class="description">
-
-                <ul>
-                    <li>Underlying Indices: NIFTY & SENSEX</li>
-                    <li>Data Type: OHLCV + OI Data</li>
-                    <li>Time Frame: 1 Minute</li>
-                    <li>Coverage Period: Jan 2014 - May 2026</li>
-                    <li>Duration: 12 Years & 5 Months</li>
-                    <li>Expired Contracts: 1,46,714</li>
-                    <li>Data Size: 16.42 GB</li>
-                    <li>Update Frequency: Monthly</li>
-                    <li>Includes:</li>
-                    <li>OHLCV Data</li>
-                    <li>Open Interest (OI) Data</li>
-                    <li>Price: ₹5,000</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="emailbox">
-
-        <p>Interested in our data ?</p>
-        <p>Send us your details, we will contact you.</p>
-
-        <form id="waitlist-form">
-
-            <input type="name" id="name" placeholder="Enter your name" required>
-            <input type="email" id="email" placeholder="Enter your email" required>
-            <input type="tel" id="phone" placeholder="Enter your phone" required>
-
-            <button type="submit">Submit Details</button>
-
-            <div id="message"></div>
-
-        </form>
-
-    </div>
-
+    <!-- Core Modular Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth_helper.js"></script>
+    <!-- Page controller -->
     <script src="script.js"></script>
 
 </body>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Data Nerd</title>
+    <meta name="description" content="Create a free Data Nerd account to access historical datasets of stocks, fundamentals, and options in the Indian equity markets.">
+    <meta name="keywords" content="data nerd signup, register account, stock market datasets registration">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="headermenu">
+        <div class="top-auth" id="top-auth">
+            <!-- Dynamically populated by auth_helper.js -->
+        </div>
+        <h1>Data Nerd</h1>
+        <p>Create an account to browse and buy premium datasets</p>
+    </header>
+
+    <!-- Signup Form Card -->
+    <main class="authbox">
+        <p>Register Your Account</p>
+        <form id="signup-form">
+            <input type="text" id="signup-name" placeholder="Full Name" required>
+            <input type="email" id="signup-email" placeholder="Email Address" required>
+            <input type="password" id="signup-password" placeholder="Create Password" required>
+            <button type="submit">Create Account</button>
+            <div id="signup-message"></div>
+        </form>
+        <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-secondary);">
+            Already have an account? <a href="login.html" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Sign in here</a>
+        </p>
+    </main>
+
+    <!-- Core Modular Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth_helper.js"></script>
+    <!-- Page controller -->
+    <script src="signup.js"></script>
+</body>
+</html>
