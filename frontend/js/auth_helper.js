@@ -69,7 +69,7 @@ const Auth = {
         const theme = localStorage.getItem('theme') || 'light';
         const themeBtnHtml = `
             <button id="theme-toggle-btn" class="auth-btn" style="font-weight: 700; text-transform: uppercase;">
-                ${theme === 'light' ? '🌙 Dark' : '☀ Light'}
+                ${theme === 'light' ? '☾ Dark' : '☀ Light'}
             </button>
         `;
 
