@@ -73,11 +73,16 @@ const Auth = {
             </button>
         `;
 
+        const globalNavHtml = `
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="articles.html" class="nav-link">Articles</a>
+        `;
+
         if (this.isAuthenticated()) {
             const userName = this.getUserName();
             const isAdminUser = this.isAdmin();
             
-            let navHtml = `
+            let navHtml = globalNavHtml + `
                 <span class="welcome-text">Welcome, <strong>${userName}</strong></span>
             `;
             
@@ -86,8 +91,6 @@ const Auth = {
                 const isDashboard = window.location.pathname.includes('admin.html');
                 if (!isDashboard) {
                     navHtml += `<a href="admin.html" class="nav-link dashboard-link">Dashboard</a>`;
-                } else {
-                    navHtml += `<a href="index.html" class="nav-link dashboard-link">Marketplace</a>`;
                 }
             }
             
@@ -95,14 +98,17 @@ const Auth = {
                 <button id="logout-btn" class="auth-btn logout-btn">Logout</button>
             `;
             
-            topAuth.innerHTML = themeBtnHtml + navHtml;
+            topAuth.innerHTML = navHtml + themeBtnHtml;
 
             const logoutBtn = document.getElementById('logout-btn');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', () => this.logout());
             }
         } else {
-            topAuth.innerHTML = themeBtnHtml;
+            topAuth.innerHTML = globalNavHtml + `
+                <a href="login.html" class="auth-btn">Login</a>
+                <a href="signup.html" class="auth-btn signup-btn">Sign Up</a>
+            ` + themeBtnHtml;
         }
 
         // Add theme button event listener

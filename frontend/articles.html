@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Guides - Data Nerd</title>
+    <meta name="description" content="Read articles and guides about the Indian stock market, option pricing, and algorithmic trading.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="headermenu">
+        <div class="top-auth" id="top-auth">
+            <!-- Dynamically populated by auth_helper.js -->
+        </div>
+        <h1>Data Nerd</h1>
+        <p>Market Insights, Articles, and Trading Guides</p>
+    </header>
+
+    <!-- Articles Section -->
+    <main class="articles-section">
+        <h2>Published Articles</h2>
+        <div id="articles-container">
+            <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-secondary);">Loading articles...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Core Modular Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth_helper.js"></script>
+    <script src="js/articles.js"></script>
+
+</body>
+
+</html>
